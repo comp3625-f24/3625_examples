@@ -22,7 +22,7 @@ print(dataset.feature_names)
 
 # try to fit a decision tree to the data
 training_idx = np.random.random(150) > 0.5
-tree = DecisionTreeClassifier(criterion="entropy")
+tree = DecisionTreeClassifier(criterion="entropy", max_depth=2)
 tree.fit(dataset.data[training_idx, :], dataset.target[training_idx])
 # plot_tree(tree, feature_names=dataset.feature_names)
 # plt.show()
@@ -34,5 +34,7 @@ print(dataset.target[~training_idx])
 # print the accuracy of the tree's predictions on the test data
 print((predictions == dataset.target[~training_idx]).mean())
 
-
+# predict probability distributions over outcomes
+proba = tree.predict_proba(dataset.data[~training_idx])
+print(proba)
 
