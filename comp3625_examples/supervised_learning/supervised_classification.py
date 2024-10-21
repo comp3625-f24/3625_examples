@@ -24,13 +24,15 @@ model = KNeighborsClassifier(n_neighbors=5)
 
 # now fit the KNN classifier to the data using the "fit" method
 # you may want to refer to the documentation here: https://scikit-learn.org/dev/modules/generated/sklearn.neighbors.KNeighborsClassifier.html
-# YOUR CODE HERE
+model.fit(x, y)
 
 
 # now that the classifier has been built, test it out on the training data
 # use the "predict" method to generate predictions for the training data in X
 # measure the prediction's % accuracy (# predictions right / total predictions)
-# YOUR CODE HERE
+predictions = model.predict(x)
+accuracy = (predictions == y).sum() / len(predictions)
+print(f'accuracy={accuracy}')
 
 
 # the K nearest neighbors are identified based on euclidean distance between feature values
@@ -38,7 +40,7 @@ model = KNeighborsClassifier(n_neighbors=5)
 # the features be skewing the distance calcs?
 # if so, try to correct this by standardizing each column of X (divide each column by its standard deviation)
 # then re-fit and re-predict
-# YOUR CODE HERE
+x = x / x.std()
 
 
 # now suppose we want to see how confident the model is in its predictions
