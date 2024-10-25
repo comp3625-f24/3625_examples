@@ -23,8 +23,8 @@ x_test = df.drop('class', axis=1).loc[~train_idx]
 y_test = df['class'].loc[~train_idx]
 
 # We will manipulate the following parameters of the SKlearn decision tree algorithm:
-#   min_impurity_decrease: threshold between 0-1 on how much improvement a split must offer
-#   ccp_alpha: parameter (between 0-1) that controls amount of pruning (removal of less-useful subtrees)
+#   min_impurity_decrease: threshold between 0-1 on how much improvement a split must offer. Defaults to 0 in SKLearn's decision tree.
+#   ccp_alpha: parameter (between 0-1) that controls amount of pruning (removal of less-useful subtrees). Defaults to 0 in SKLearn's decision tree.
 # write a function that accepts a tuple containing (min_impurity_decrease, ccp_alpha) values, instantiates a decision
 # tree with those params, fits it to that subset of the data, and then measures its prediction accuracy on the test set.
 # refer to docs if needed: https://scikit-learn.org/dev/modules/generated/sklearn.tree.DecisionTreeClassifier.html
