@@ -5,7 +5,7 @@ from scipy.optimize import minimize, dual_annealing
 
 
 # ______________________________________________________________________________________________________________
-# In this exercise we will use optimization functions to optimize a decision tree's parameters
+# In this exercise we will use optimization functions to optimize a decision tree's meta-parameters
 # ______________________________________________________________________________________________________________
 
 
