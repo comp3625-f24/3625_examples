@@ -7,3 +7,4 @@ requests
 scipy
 gymnasium
 pygad
+scikit-learn
