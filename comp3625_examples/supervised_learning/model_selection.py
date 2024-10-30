@@ -41,7 +41,7 @@ def tree_accuracy(params) -> float:
     accuracy = (predictions == y_test).mean()
     return -accuracy
 
-# call your function with the params (0, 0) - these are the decision tree defaults. What is the default accuracy?
+# call your function with the params (0.5, 0.5) - let this be the starting point for our search. What is this baseline accuracy?
 print(tree_accuracy((0.5, 0.5)))
 
 
