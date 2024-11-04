@@ -3,8 +3,10 @@ from sklearn.datasets import load_digits
 from matplotlib import pyplot as plt
 import random
 
+# load the hand-written digets dataset
 digits = load_digits()
 
+# plot some digits chosen at random from the set
 fig, ax = plt.subplots(4, 4)
 for i in range(4):
     for j in range(4):
