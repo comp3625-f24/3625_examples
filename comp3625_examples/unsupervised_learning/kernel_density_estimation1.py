@@ -16,4 +16,5 @@ grade_values = np.linspace(0, 1, 50)
 log_likelihoods = kde.score_samples(grade_values.reshape((-1, 1)))
 
 plt.plot(grade_values, np.exp(log_likelihoods))
+plt.scatter(data['Midterm 1'], np.zeros(len(data.index)))
 plt.show()
