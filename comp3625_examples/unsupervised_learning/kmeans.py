@@ -8,7 +8,7 @@ X, y = make_blobs(n_samples=100, n_features=2, centers=6)
 # X, y = make_classification(n_samples=100, n_features=2, n_redundant=0, n_classes=4, n_clusters_per_class=1, class_sep=2)
 
 # instantiate k-means clustering algorithm
-kmeans = KMeans(n_clusters=4)
+kmeans = KMeans(n_clusters=5)
 
 # run the clustering
 kmeans.fit(X)

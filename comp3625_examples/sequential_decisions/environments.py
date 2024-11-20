@@ -22,13 +22,42 @@ class ToyMDP(Env[ObsType, int]):
         self.action_space = Discrete(len(set(itertools.chain.from_iterable([list(self.t[state]) for state in self.t]))))
         self.observation_space = Discrete(len(self.t))
 
+    def all_states(self):
+        all_s = set(self.t)
+        # find and add terminal states
+        for _, a in self.t.items():
+            for s in a.values():
+                all_s.update(s)
+        return all_s
+
+
     def get_actions(self, state=None) -> list:
-        return list(self.t[state or self.current_state])
+        """
+        get actions available from state
+        :param state: the state
+        :return: list of available actions
+        """
+        return list(self.t.get(state or self.current_state, []))
 
     def get_transition_probabilities(self, state, action):
-        return self.t[state][action]
+        """
+        get the distribution over next states, when action is executed from state
+        :param state: the state the agent is in
+        :param action: the action executed from state
+        :return: dict mapping next-state -> probability
+        """
+        if state in self.t and action in self.t[state]:
+            return self.t[state][action]
+        return {}
 
-    def get_reward(self, state, action, new_state):
+    def get_reward(self, state, action, new_state) -> float:
+        """
+        get the reward for a given state, action, new_state transition
+        :param state: the original state
+        :param action: the action executed from state
+        :param new_state: the new state encountered after taking action
+        :return: a sample of the reward for this transition
+        """
         return self.r(state, action, new_state)
 
     def _get_observation(self) -> ObsType:
@@ -167,6 +196,9 @@ class RusselNorvigMDP(ToyMDP[tuple]):
             reward_function=self._reward_function,
             current_state=(1, 1)
         )
+
+    def get_actions(self, state=None):
+        return [0, 1, 2, 3]
 
     def _reward_function(self, old_state, action, new_state):
         if np.array_equal(new_state, [4, 3]):
