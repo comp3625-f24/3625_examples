@@ -307,7 +307,7 @@ class TicTacToe(Env):
 
 if __name__ == '__main__':
 
-    env = TwoStateMDP()
+    env = ThreeStateMDP()
     state, _ = env.reset()
     while True:
         action = input(f'state={state}, choose from actions: {env.get_actions(state)} ("q" to quit): ')

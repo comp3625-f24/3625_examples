@@ -3,7 +3,7 @@ from environments import RusselNorvigMDP
 
 # instantiate the MDP (the one from the lectures... which is actually the one from the textbook)
 # it will be useful to pull up the image of the MDP in the slides
-mdp = RusselNorvigMDP(movement_cost=-0.04)
+mdp = RusselNorvigMDP(movement_cost=-2)
 
 # in this MDP, the "state" is the agent's current position or (x,y) coordinates.
 # the agent starts at (1, 1)
@@ -37,8 +37,16 @@ Q_prime = {s: {a: 0 for a in mdp.get_actions(s)} for s in mdp.all_states()}
 
 
 # implement your value iteration algorithm here
-# YOUR CODE HERE
-
+for step in range(10_000):
+    for state in mdp.all_states():
+        for action in mdp.get_actions(state):
+            transition_probs = mdp.get_transition_probabilities(state, action)
+            Q_prime[state][action] = 0
+            for next_state, probability in transition_probs.items():
+                r = mdp.get_reward(state, action, next_state)
+                best_value_new_state = max(Q[next_state].values())
+                Q_prime[state][action] += probability * (r + 0.9 * best_value_new_state)
+    Q = Q_prime
 
 # try printing out the Q values for states (4, 1) (3, 2) and (1, 1). Do they make sense?
 print(f'Q values for (4, 1): {Q[(4, 1)]}')
